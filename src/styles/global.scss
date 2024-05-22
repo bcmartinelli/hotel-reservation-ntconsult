@@ -6,10 +6,19 @@ body {
     background: $neutralcolor-gray-soft;
     color: $neutralcolor-dark-black;
   }
+
+  .v-container {
+    width: 100%;
+    max-width: 1280px;
+  }
+
+  [class*="v-col-"]{
+    padding: 6px;
+  }
 }
 
 h1, h2, h3, h4, h5, h6 {
-  color: $primary-color;
+  color: red;
 }
 
 a {

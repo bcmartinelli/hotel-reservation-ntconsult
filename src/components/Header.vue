@@ -1,8 +1,10 @@
 <template>
-  <v-app-bar :elevation="0" class="pt-0 ps-4 mb-4">
-    <v-app-bar-title>
-      <RouterLink to="/">NT <span>Hotel Booking</span></RouterLink>
-    </v-app-bar-title>
+  <v-app-bar :elevation="0">
+    <v-container>
+      <v-app-bar-title>
+        <RouterLink to="/">NT <span>Hotel Booking</span></RouterLink>
+      </v-app-bar-title>
+    </v-container>
   </v-app-bar>
 </template>
 

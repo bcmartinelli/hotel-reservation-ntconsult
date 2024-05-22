@@ -1,9 +1,9 @@
 <template>
-  <div>
-    <h1>Pesquisa de Hotéis</h1>
-    <SearchForm />
+  <v-container>
+    <h5 class="text-h5 mb-4">Para onde você vai?</h5>
+    <SearchForm class="mb-4" />
     <SearchResults v-if="hotels.length" :hotels="hotels" />
-  </div>
+  </v-container>
 </template>
 
 <script lang="ts">
@@ -31,10 +31,8 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-h1 {
-  color: $primary-color;
-  text-align: center;
-  margin-bottom: 20px;
+h5 {
+  color: $secondary-color;
 }
 @media (max-width: 600px) {
   h1 {

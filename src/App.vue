@@ -2,9 +2,9 @@
   <v-app>
     <Notification />
     <HeaderComponent />
-    <div class="container">
+    <v-main class="router-container pa-0">
       <router-view />
-    </div>
+    </v-main>
   </v-app>
 </template>
 
@@ -17,3 +17,10 @@ export default defineComponent({
   components: { Notification, HeaderComponent },
 });
 </script>
+
+<style lang="scss" scoped>
+.rounter-container {
+  width: 100%;
+  max-width: 1280px;
+}
+</style>
