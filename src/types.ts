@@ -17,7 +17,7 @@ export interface Notification {
 export interface BookingDetails {
   name: string;
   contact: string;
-  paymentDetails: string;
+  paymentMethod: string | null;
 }
 
 export interface SearchCriteria {

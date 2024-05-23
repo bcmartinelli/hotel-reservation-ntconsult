@@ -48,16 +48,21 @@
     </v-card-text>
     <v-divider></v-divider>
     <v-card-actions>
-      <v-btn text="Reservar" @click="compareHotels" class="my-0 w-100"></v-btn>
+      <v-btn text="Reservar" @click="openModal" class="my-0 w-100"></v-btn>
     </v-card-actions>
   </v-card>
+  <BookingForm :isOpen="isModalOpen" @update:isOpen="updateIsModalOpen" />
 </template>
 
 <script lang="ts">
 import { defineComponent, PropType, ref, watch } from 'vue';
+import BookingForm from '@/components/forms/BookingForm.vue';
 import { Hotel } from '@/types';
+import { useBookingStore } from '@/store/booking';
+import { formatToBRL } from '@/utils';
 
 export default defineComponent({
+  components: { BookingForm },
   props: {
     nonShowCompareBtn: {
       type: Boolean,
@@ -72,7 +77,10 @@ export default defineComponent({
       required: false,
     },
   },
+  emits: ['update-selected-hotels'],
   setup(props, { emit }) {
+    const bookingStore = useBookingStore();
+    const isModalOpen = ref(false);
     const localSelectedHotels = ref(
       props.selectedHotels ? [...props.selectedHotels] : [],
     );
@@ -87,16 +95,24 @@ export default defineComponent({
 
     const compareHotels = () => {};
 
-    const formatToBRL = (value: number) => {
-      let formattedValue = new Intl.NumberFormat('pt-BR', {
-        style: 'currency',
-        currency: 'BRL',
-        minimumFractionDigits: 2,
-      }).format(value);
-      return formattedValue.replace(/^R\$\s?/, '');
+    const openModal = () => {
+      isModalOpen.value = true;
+      bookingStore.setHotel(props.hotel);
     };
 
-    return { localSelectedHotels, compareHotels, formatToBRL };
+    const updateIsModalOpen = (newVal: boolean) => {
+      isModalOpen.value = newVal;
+      if (!newVal) bookingStore.setHotel(null);
+    };
+
+    return {
+      localSelectedHotels,
+      compareHotels,
+      formatToBRL,
+      isModalOpen,
+      updateIsModalOpen,
+      openModal,
+    };
   },
 });
 </script>
