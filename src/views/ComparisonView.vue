@@ -1,33 +1,63 @@
 <template>
-  <div v-if="selectedHotels.length">
-    <h2>Comparação de Hotéis</h2>
-    <div class="comparison-container">
-      <div
+  <v-container>
+    <h5
+      :class="`text-h5 mb-4 ${selectedHotels.length < 1 ? 'text-center' : ''}`"
+    >
+      Compare entre suas escolhas
+    </h5>
+    <v-row v-if="selectedHotels.length">
+      <v-col
         v-for="hotel in selectedHotels"
         :key="hotel.id"
-        class="hotel-comparison"
+        cols="12"
+        sm="6"
+        md="3"
+        class="pa-3 pa-sm-3 mb-3 mb-sm-0"
       >
-        <h3>{{ hotel.name }}</h3>
-        <p>Preço: {{ hotel.price }}</p>
-        <p>Avaliação: {{ hotel.rating }}</p>
-        <button @click="selectHotel(hotel)">Reservar</button>
-      </div>
-    </div>
-    <BookingForm v-if="selectedHotel" />
-  </div>
-  <div v-else>
-    <p>Nenhum hotel selecionado para comparação.</p>
-  </div>
+        <CardHotel :hotel="hotel" non-show-compare-btn />
+      </v-col>
+    </v-row>
+    <template v-else>
+      <v-sheet
+        class="pa-4 text-center mx-auto"
+        elevation="0"
+        max-width="600"
+        rounded="lg"
+        width="100%"
+      >
+        <v-icon
+          class="mb-5"
+          icon="mdi-alert-circle-outline"
+          size="100"
+        ></v-icon>
+
+        <h2 class="text-h5 mb-6">Ops! Sem hotéis selecionados</h2>
+
+        <p class="mb-4 text-medium-emphasis text-body-2">
+          Você se esqueceu de selecionar os hoteis para comparação.<br />
+          Pesquise os hotéis que mais lhe agrada!
+        </p>
+
+        <v-divider class="mb-4"></v-divider>
+
+        <div class="text-center">
+          <v-btn class="text-none" variant="outlined" width="150" to="/">
+            Voltar
+          </v-btn>
+        </div>
+      </v-sheet>
+    </template>
+  </v-container>
 </template>
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
 import { useComparisonStore } from '@/store/comparison';
-import BookingForm from '@/components/forms/BookingForm.vue';
 import { Hotel } from '@/types';
+import CardHotel from '@/components/CardHotel.vue';
 
 export default defineComponent({
-  components: { BookingForm },
+  components: { CardHotel },
   setup() {
     const comparisonStore = useComparisonStore();
     const selectedHotel = ref<Hotel | null>(null);
@@ -46,23 +76,11 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-.comparison-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
+.v-icon {
+  color: $secondary-color;
 }
-
-.hotel-comparison {
-  border: 1px solid #ccc;
-  padding: 10px;
-  border-radius: 4px;
-  flex: 1;
-  min-width: 200px;
-}
-
-@media (max-width: 600px) {
-  .comparison-container {
-    flex-direction: column;
-  }
+.v-btn {
+  color: $secondary-color;
+  border-color: $secondary-color;
 }
 </style>

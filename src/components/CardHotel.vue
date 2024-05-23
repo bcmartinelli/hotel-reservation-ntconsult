@@ -17,6 +17,7 @@
         </v-card-subtitle>
       </div>
       <v-checkbox
+        v-if="!nonShowCompareBtn"
         v-model="localSelectedHotels"
         :value="hotel"
         false-icon="mdi-file-compare"
@@ -58,17 +59,23 @@ import { Hotel } from '@/types';
 
 export default defineComponent({
   props: {
+    nonShowCompareBtn: {
+      type: Boolean,
+      default: false,
+    },
     hotel: {
       type: Object as PropType<Hotel>,
       required: true,
     },
     selectedHotels: {
       type: Array as PropType<Hotel[]>,
-      required: true,
+      required: false,
     },
   },
   setup(props, { emit }) {
-    const localSelectedHotels = ref([...props.selectedHotels]);
+    const localSelectedHotels = ref(
+      props.selectedHotels ? [...props.selectedHotels] : [],
+    );
     const emitUpdate = () => {
       emit('update-selected-hotels', {
         selected: localSelectedHotels.value,

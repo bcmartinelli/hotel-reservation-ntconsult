@@ -30,13 +30,4 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss" scoped>
-h5 {
-  color: $secondary-color;
-}
-@media (max-width: 600px) {
-  h1 {
-    font-size: 1.5em;
-  }
-}
-</style>
+<style lang="scss" scoped></style>

@@ -10,8 +10,8 @@ const routes = [
     component: HomeView,
   },
   {
-    path: '/comparison',
-    name: 'Comparison',
+    path: '/comparacoes',
+    name: 'Comparação',
     component: ComparisonView,
   },
 ];

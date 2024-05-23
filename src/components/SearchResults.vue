@@ -53,7 +53,7 @@ export default defineComponent({
 
     const compareHotels = () => {
       comparisonStore.setSelectedHotels(selectedHotels.value);
-      router.push({ name: 'Comparison' });
+      router.push({ name: 'Comparação' });
     };
 
     const updateSelectedHotels = (newHotels: {
