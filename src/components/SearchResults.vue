@@ -1,17 +1,34 @@
 <template>
-  <div>
-    <h2>Resultados da Pesquisa</h2>
-    <ul>
-      <li v-for="hotel in hotels" :key="hotel.id">
-        <input type="checkbox" :value="hotel" v-model="selectedHotels" />
-        <h3>{{ hotel.name }}</h3>
-        <p>Preço: {{ hotel.price }}</p>
-        <p>Avaliação: {{ hotel.rating }}</p>
-        <p>Pais: {{ hotel.country }}</p>
-      </li>
-    </ul>
-    <button @click="compareHotels">Comparar Selecionados</button>
-  </div>
+  <v-container class="mt-8 pa-0">
+    <v-row>
+      <v-col
+        v-for="hotel in hotels"
+        :key="hotel.id"
+        cols="12"
+        sm="6"
+        md="3"
+        class="pa-3 pa-sm-3 mb-3 mb-sm-0"
+      >
+        <CardHotel
+          :hotel="hotel"
+          :selected-hotels="selectedHotels"
+          @update-selected-hotels="updateSelectedHotels"
+        ></CardHotel>
+      </v-col>
+    </v-row>
+    <v-btn
+      v-if="selectedHotels.length > 0"
+      class="btn-fab"
+      position="fixed"
+      location="bottom right"
+      prepend-icon="mdi-file-compare"
+      size="small"
+      :elevation="6"
+      @click="compareHotels"
+    >
+      Comparar
+    </v-btn>
+  </v-container>
 </template>
 
 <script lang="ts">
@@ -19,6 +36,7 @@ import { defineComponent, PropType, ref } from 'vue';
 import { useComparisonStore } from '@/store/comparison';
 import { useRouter } from 'vue-router';
 import { Hotel } from '@/types';
+import CardHotel from '@/components/CardHotel.vue';
 
 export default defineComponent({
   props: {
@@ -27,6 +45,7 @@ export default defineComponent({
       required: true,
     },
   },
+  components: { CardHotel },
   setup() {
     const comparisonStore = useComparisonStore();
     const selectedHotels = ref<Hotel[]>([]);
@@ -37,37 +56,48 @@ export default defineComponent({
       router.push({ name: 'Comparison' });
     };
 
-    return { selectedHotels, compareHotels };
+    const updateSelectedHotels = (newHotels: {
+      selected: Hotel[];
+      hotel: Hotel;
+    }) => {
+      const newHotel = newHotels.selected[0];
+      if (newHotels.selected.length >= 1) {
+        selectedHotels.value.push(newHotel);
+      } else {
+        const indexHotel = selectedHotels.value.findIndex(
+          (local) => local.id === newHotels.hotel.id,
+        );
+
+        selectedHotels.value.splice(indexHotel, 1);
+      }
+    };
+
+    return { selectedHotels, compareHotels, updateSelectedHotels };
   },
 });
 </script>
 
 <style lang="scss" scoped>
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  padding: 10px;
-  border: 1px solid #ccc;
-  margin-bottom: 10px;
-  border-radius: 4px;
-}
-h2 {
-  color: $primary-color;
-  text-align: center;
-  margin-bottom: 20px;
+.card-title {
+  position: relative;
+  .v-checkbox {
+    position: absolute;
+    right: 4px;
+    top: 0;
+    color: $primary-color;
+  }
 }
 button {
-  padding: 10px;
-  background-color: $primary-color;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  margin-top: 20px;
-}
-button:hover {
-  background-color: $primary-color-hover;
+  &.v-btn {
+    background-color: $primary-color;
+    color: white;
+    cursor: pointer;
+
+    &.btn-fab {
+      margin-right: 16px;
+      margin-bottom: 16px;
+      background-color: $secondary-color;
+    }
+  }
 }
 </style>

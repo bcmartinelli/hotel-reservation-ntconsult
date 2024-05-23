@@ -4,6 +4,7 @@ export interface Hotel {
   price: number;
   rating: number;
   country: string;
+  image: string;
 }
 
 export interface Notification {
