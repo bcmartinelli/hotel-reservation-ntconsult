@@ -23,5 +23,16 @@ export default [
       '@typescript-eslint/no-explicit-any': 'off',
       'vue/multi-word-component-names': 'off',
     },
+    overrides: [
+      {
+        files: ['babel.config.cjs', 'webpack.config.js'], // Adicione aqui outros arquivos de configuração, se necessário
+        env: {
+          node: true,
+        },
+        globals: {
+          module: 'writable',
+        },
+      },
+    ],
   },
 ];

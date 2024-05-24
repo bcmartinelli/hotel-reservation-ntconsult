@@ -2,7 +2,7 @@
 
 ## Descrição
 
-Este é um sistema de reserva de hotéis desenvolvido com Vue.js e Vuetify. A aplicação permite que os usuários pesquisem hotéis, comparem opções e façam reservas. O projeto utiliza Pinia para gerenciamento de estado e Jest para testes.
+Este é um sistema de reserva de hotéis desenvolvido com Vue.js e Vuetify. A aplicação permite que os usuários pesquisem hotéis, comparem opções e façam reservas. O projeto utiliza Pinia para gerenciamento de estado e Vitest para testes.
 
 ## Funcionalidades
 
@@ -15,7 +15,7 @@ Este é um sistema de reserva de hotéis desenvolvido com Vue.js e Vuetify. A ap
 - Vue.js 3
 - Vuetify 3
 - Pinia
-- Jest
+- Vitest
 - TypeScript
 - Axios
 
@@ -29,7 +29,7 @@ Este é um sistema de reserva de hotéis desenvolvido com Vue.js e Vuetify. A ap
 1. Clone o repositório:
 
    ```sh
-   git clone https://github.com/seu-usuario/hotel-reservation-system.git
+   git clone https://github.com/bcmartinelli/hotel-reservation-ntconsult.git
    cd hotel-reservation-system
    ```
 
