@@ -1,5 +1,5 @@
 <template>
-  <v-container class="pa-0">
+  <v-container class="mb-7 pa-0">
     <v-row class="px-3 mt-4 mb-3">
       <v-col cols="12" sm="7" class="d-flex align-center custom-text-justify">
         <h5 class="text-h5">Temos o hotel ideal para você!</h5>
