@@ -1,7 +1,8 @@
 <template>
   <v-container>
     <h5 class="text-h5 mb-4">Para onde você vai?</h5>
-    <SearchForm class="mb-4" />
+    <SearchForm class="mb-10" />
+
     <SearchResults v-if="hotels.length" :hotels="hotels" />
   </v-container>
 </template>

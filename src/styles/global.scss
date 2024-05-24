@@ -29,3 +29,14 @@ a {
     text-decoration: underline;
   }
 }
+
+.custom-text-justify {
+  justify-content: start;
+}
+
+@media (max-width: 600px) {
+  .custom-text-justify {
+    text-align: center;
+    justify-content: center;
+  }
+}
