@@ -17,5 +17,10 @@ export default defineConfig({
         inline: ['vuetify']
       }
     },
+    coverage: {
+      exclude: [
+        'src/utils/mockApi.js'
+      ]
+    }
   },
 });

@@ -1,19 +1,21 @@
-import { mount } from '@vue/test-utils';
+import { flushPromises, mount } from '@vue/test-utils';
 import { createRouter, createWebHistory } from 'vue-router';
+import HeaderComponent from '@/components/Header.vue';
+import { describe, expect, it, beforeEach } from 'vitest';
+import { mountWithVuetify } from './test-utils';
+import router from '@/router';
 
-import HearderComponent from '@/components/Header.vue';
-import { createVuetify } from 'vuetify';
-const router = createRouter({
-  history: createWebHistory(),
-  routes: [{ path: '/', name: 'Home', component: HearderComponent }],
-});
 
 describe('Header.vue', () => {
+  beforeEach(async () => {
+    router.push('/');
+    await router.isReady();
+  });
+
   it('renders the app bar and checks the title and link', async () => {
-    const vuetify = createVuetify();
-    const wrapper = mount(HearderComponent, {
+    const wrapper = mountWithVuetify(HeaderComponent, {
       global: {
-        plugins: [vuetify, router],
+        plugins: [router],
       },
     });
 
@@ -27,7 +29,7 @@ describe('Header.vue', () => {
     expect(routerLink.attributes('href')).toBe('/');
 
     await routerLink.trigger('click');
-    await router.isReady();
+    await flushPromises();
     expect(router.currentRoute.value.path).toBe('/');
   });
 });

@@ -4,5 +4,5 @@ export const formatToBRL = (value: number) => {
     currency: 'BRL',
     minimumFractionDigits: 2,
   }).format(value);
-  return formattedValue.replace(/^R\$\s?/, '');
+  return formattedValue.replace(/^R\$\s?/, '').replace(/^-R\$\s?/, '-');
 };
