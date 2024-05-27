@@ -75,14 +75,14 @@ export default defineComponent({
     selectedHotels: {
       type: Array as PropType<Hotel[]>,
       required: false,
+      default: []
     },
   },
   emits: ['update-selected-hotels'],
   setup(props, { emit }) {
     const bookingStore = useBookingStore();
     const isModalOpen = ref(false);
-    const localSelectedHotels = ref(
-      props.selectedHotels ? [...props.selectedHotels] : [],
+    const localSelectedHotels = ref([...props.selectedHotels],
     );
     const emitUpdate = () => {
       emit('update-selected-hotels', {
@@ -92,8 +92,6 @@ export default defineComponent({
     };
 
     watch(localSelectedHotels, emitUpdate, { deep: true });
-
-    const compareHotels = () => {};
 
     const openModal = () => {
       isModalOpen.value = true;
@@ -107,7 +105,6 @@ export default defineComponent({
 
     return {
       localSelectedHotels,
-      compareHotels,
       formatToBRL,
       isModalOpen,
       updateIsModalOpen,

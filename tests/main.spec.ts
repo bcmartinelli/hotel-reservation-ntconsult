@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach } from 'vitest';
-import { mount, flushPromises } from '@vue/test-utils';
+import { flushPromises } from '@vue/test-utils';
 import { createApp } from 'vue';
 import App from '../src/App.vue';
 import router from '../src/router';
@@ -19,7 +19,7 @@ describe('Main Application', () => {
     app.use(router);
   });
 
-  it('mounts the app without errors', async () => {
+  it('should mounts the app without errors', async () => {
     const  wrapper = mountWithVuetify(App, {
       global: {
         plugins: [router],

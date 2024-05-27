@@ -12,7 +12,7 @@ describe('Header.vue', () => {
     await router.isReady();
   });
 
-  it('renders the app bar and checks the title and link', async () => {
+  it('should renders the app bar and checks the title and link', async () => {
     const wrapper = mountWithVuetify(HeaderComponent, {
       global: {
         plugins: [router],
