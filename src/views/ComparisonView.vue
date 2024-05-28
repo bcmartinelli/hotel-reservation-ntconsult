@@ -62,14 +62,10 @@ export default defineComponent({
     const comparisonStore = useComparisonStore();
     const selectedHotel = ref<Hotel | null>(null);
 
-    const selectHotel = (hotel: Hotel) => {
-      selectedHotel.value = hotel;
-    };
 
     return {
       selectedHotels: comparisonStore.selectedHotels,
       selectedHotel,
-      selectHotel,
     };
   },
 });

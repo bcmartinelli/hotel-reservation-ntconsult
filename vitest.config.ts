@@ -19,6 +19,8 @@ export default defineConfig({
     },
     coverage: {
       exclude: [
+        'src/main.ts',
+        'src/plugins/vuetify.ts',
         'src/utils/mockApi.js'
       ]
     }
