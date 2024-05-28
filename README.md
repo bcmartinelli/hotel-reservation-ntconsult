@@ -83,6 +83,7 @@ A aplicação estará disponível em `http://localhost:5173`.
 │   ├── App.vue
 │   ├── main.ts
 │   └── types.ts
+├── tests
 ├── tsconfig.json
 ├── yarn.lock
 └── package.json
@@ -94,4 +95,10 @@ Para rodar os testes, execute:
 
 ```sh
 yarn test
+```
+
+Para visualizar a cobertura de testes, execute:
+
+```sh
+yarn coverage
 ```
