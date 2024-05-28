@@ -2,7 +2,7 @@ import { flushPromises, mount } from '@vue/test-utils';
 import { createRouter, createWebHistory } from 'vue-router';
 import HeaderComponent from '@/components/Header.vue';
 import { describe, expect, it, beforeEach } from 'vitest';
-import { mountWithVuetify } from './test-utils';
+import { mountWithVuetify } from '../test-utils';
 import router from '@/router';
 
 

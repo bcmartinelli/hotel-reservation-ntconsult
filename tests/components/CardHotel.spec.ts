@@ -1,7 +1,7 @@
 import { flushPromises } from '@vue/test-utils';
 import CardHotel from '@/components/CardHotel.vue';
 import { describe, expect, it, beforeEach, beforeAll, vi } from 'vitest';
-import { mountWithVuetify } from './test-utils';
+import { mountWithVuetify } from '../test-utils';
 import { useBookingStore } from '@/store/booking';
 import router from '@/router';
 import { Hotel } from '@/types';
