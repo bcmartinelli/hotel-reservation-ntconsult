@@ -9,9 +9,7 @@
               v-model="formData.destination"
               label="Destino"
               placeholder="Insira um país ou hotel"
-              :rules="[rules.required]"
               hide-details
-              required
               prepend-inner-icon="mdi-map-marker"
               variant="solo"
               flat
@@ -82,7 +80,7 @@
             ></v-text-field>
           </v-col>
           <v-col cols="12" md="2">
-            <v-btn type="submit" flat>Buscar</v-btn>
+            <v-btn id="teste" type="submit" flat>Buscar</v-btn>
           </v-col>
         </v-row>
       </v-container>
@@ -108,11 +106,6 @@ export default defineComponent({
     const checkOutDatePicker = ref(false);
 
     const searchStore = useSearchStore();
-    const destination = ref('');
-    const checkInDate = ref('');
-    const checkOutDate = ref('');
-    const rooms = ref(1);
-    const guests = ref(1);
 
     const rules = {
       required: (value: any) => !!value || 'Obrigatório.',
@@ -132,11 +125,6 @@ export default defineComponent({
       rules,
       checkInDatePicker,
       checkOutDatePicker,
-      destination,
-      checkInDate,
-      checkOutDate,
-      rooms,
-      guests,
       searchHotels,
     };
   },

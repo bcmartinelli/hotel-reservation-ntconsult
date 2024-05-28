@@ -8,7 +8,6 @@ import Notification from '@/components/Notification.vue';
 
 describe('Notification.vue', () => {
   let wrapper: any;
-  let notifications: NotificationType[];
 
   beforeAll(async () => {
     router.push('/');
