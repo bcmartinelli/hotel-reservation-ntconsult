@@ -39,7 +39,7 @@
               </v-col>
               <v-col cols="12">
                 <v-text-field
-                  id="checkInDate"
+                  id="contact"
                   v-model="formData.contact"
                   label="Contato"
                   :rules="[rules.required]"
@@ -51,7 +51,7 @@
               </v-col>
               <v-col cols="12">
                 <v-select
-                  id="rooms"
+                  id="paymentMethod"
                   v-model="formData.paymentMethod"
                   label="Metodo de pagamento"
                   placeholder="Selecione um método de pagamento"

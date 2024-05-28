@@ -3,8 +3,6 @@ import { mountWithVuetify } from '../../test-utils';
 import router from '@/router';
 import SearchForm from '@/components/forms/SearchForm.vue';
 import { useSearchStore } from '@/store/search';
-import { flushPromises } from '@vue/test-utils';
-
 
 describe('SearchForm.vue', () => {
   let wrapper: any;
